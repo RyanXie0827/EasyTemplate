@@ -1,15 +1,25 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.ryanxie0827.easytemplate</id>
     <name>EasyTemplate</name>
-    <vendor>ryanxie0827</vendor>
+    <vendor url="https://github.com/ryanxie0827/EasyTemplate">ryanxie0827</vendor>
+
+    <description><![CDATA[
+      EasyTemplate - 全自动同步全栈开发模板。
+    ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ryanxie0827.easytemplate.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.ryanxie0827.easytemplate.startup.MyProjectActivity" />
+        <postStartupActivity implementation="com.github.ryanxie0827.easytemplate.TemplateStartupActivity"/>
     </extensions>
+
+    <actions>
+        <action id="com.github.ryanxie0827.easytemplate.SetupAction"
+                class="com.github.ryanxie0827.easytemplate.SetupTemplatesAction"
+                text="Sync EasyTemplate"
+                description="手动执行模板同步">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
